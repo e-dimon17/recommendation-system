@@ -23,3 +23,18 @@ from surprise.model_selection import cross_validate
 # Load data into Scikit-surprise format
 reader = Reader(rating_scale=(1, 10))
 data = Dataset.load_from_df(ratings[['User-ID', 'ISBN', 'Book-Rating']], reader)
+
+# Test the trained algorithm
+from surprise import accuracy
+from surprise.model_selection import train_test_split
+
+# Use SVD algorithm
+model = SVD()
+
+# Train-test split
+trainset, testset = train_test_split(data, test_size=0.2)
+model.fit(trainset)
+predictions = model.test(testset)
+
+# Calculate RMSE
+accuracy.rmse(predictions)
