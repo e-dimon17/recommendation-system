@@ -38,3 +38,6 @@ predictions = model.test(testset)
 
 # Calculate RMSE
 accuracy.rmse(predictions)
+
+# Perform cross-validation
+cross_validate(model, data, measures=['RMSE', 'MAE'], cv=5, verbose=True)
