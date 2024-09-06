@@ -12,3 +12,10 @@ model = joblib.load('svd_book_recommendation_model.pkl')
 class RatingRequest(BaseModel):
     user_id: str
     item_id: str
+    
+# Define the prediction route
+@app.post('/predict')
+def predict_rating(data: RatingRequest):
+    # Make prediction
+    prediction = model.predict(data.user_id, data.item_id).est
+    return {'predicted_rating': prediction}
