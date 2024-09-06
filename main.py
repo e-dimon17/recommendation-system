@@ -41,3 +41,8 @@ accuracy.rmse(predictions)
 
 # Perform cross-validation
 cross_validate(model, data, measures=['RMSE', 'MAE'], cv=5, verbose=True)
+
+import joblib
+
+# Save the model
+joblib.dump(model, 'svd_book_recommendation_model.pkl')
